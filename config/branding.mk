@@ -1,5 +1,5 @@
 # Set all versions
-CUSTOM_BUILD_TYPE ?= UNOFFICIAL
+CUSTOM_BUILD_TYPE ?= PR-OFFICIAL
 
 CUSTOM_DATE_YEAR := $(shell date -u +%Y)
 CUSTOM_DATE_MONTH := $(shell date -u +%m)
@@ -13,8 +13,8 @@ CUSTOM_PLATFORM_VERSION := 11.0
 
 TARGET_PRODUCT_SHORT := $(subst aosp_,,$(CUSTOM_BUILD))
 
-CUSTOM_VERSION := PixelExperience_$(CUSTOM_BUILD)-$(CUSTOM_PLATFORM_VERSION)-$(CUSTOM_BUILD_DATE)-BETA-$(CUSTOM_BUILD_TYPE)
-CUSTOM_VERSION_PROP := eleven
+CUSTOM_VERSION := PixelReloaded_$(CUSTOM_BUILD)-$(CUSTOM_PLATFORM_VERSION)-$(CUSTOM_BUILD_DATE)-BETA
+CUSTOM_VERSION_PROP := PR11
 
 CUSTOM_PROPERTIES := \
     org.pixelexperience.version=$(CUSTOM_VERSION_PROP) \
@@ -22,3 +22,9 @@ CUSTOM_PROPERTIES := \
     org.pixelexperience.build_date=$(CUSTOM_BUILD_DATE) \
     org.pixelexperience.build_date_utc=$(CUSTOM_BUILD_DATE_UTC) \
     org.pixelexperience.build_type=$(CUSTOM_BUILD_TYPE)
+    
+ifneq ("$(wildcard vendor/secure)", "")
+PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/secure/releasekey
+PRODUCT_VERITY_SIGNING_KEY := vendor/secure/verity
+PRODUCT_EXTRA_RECOVERY_KEYS := vendor/secure/extra
+endif
