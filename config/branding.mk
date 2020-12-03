@@ -16,7 +16,7 @@ TARGET_PRODUCT_SHORT := $(subst aosp_,,$(CUSTOM_BUILD))
 CUSTOM_VERSION := PixelReloaded_$(CUSTOM_BUILD)-$(CUSTOM_PLATFORM_VERSION)-$(CUSTOM_BUILD_DATE)-BETA
 CUSTOM_VERSION_PROP := PR11
 
-ADDITIONAL_BUILD_PROPERTIES += \
+CUSTOM_PROPERTIES := \
     org.pixelexperience.version=$(CUSTOM_VERSION_PROP) \
     org.pixelexperience.version.display=$(CUSTOM_VERSION) \
     org.pixelexperience.build_date=$(CUSTOM_BUILD_DATE) \
