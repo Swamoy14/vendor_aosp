@@ -39,10 +39,6 @@ PRODUCT_COPY_FILES += \
 $(foreach f,$(wildcard vendor/aosp/prebuilt/common/etc/init/*.rc),\
     $(eval PRODUCT_COPY_FILES += $(f):system/etc/init/$(notdir $f)))
 
-# Copy over added mimetype supported in libcore.net.MimeUtils
-PRODUCT_COPY_FILES += \
-    vendor/aosp/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
-
 # Enable Android Beam on all targets
 PRODUCT_COPY_FILES += \
     vendor/aosp/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
@@ -158,6 +154,13 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.google.clientidbase=android-google \
     ro.error.receiver.system.apps=com.google.android.gms \
     ro.atrace.core.services=com.google.android.gms,com.google.android.gms.ui,com.google.android.gms.persistent
+
+# TextClassifier
+PRODUCT_PACKAGES += \
+	libtextclassifier_annotator_en_model \
+	libtextclassifier_annotator_universal_model \
+	libtextclassifier_actions_suggestions_universal_model \
+	libtextclassifier_lang_id_model
 
 # Use gestures by default
 PRODUCT_PRODUCT_PROPERTIES += \
